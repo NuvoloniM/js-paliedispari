@@ -41,3 +41,31 @@ if (userChoice == isEven(sum)) {
 } else {
     console.log('Hai perso!');
 }
+
+//target i btn in html
+let btn1 = document.getElementById('btn_1');
+let btn2 = document.getElementById('btn_2');
+let btn3 = document.getElementById('btn_3');
+let btn4 = document.getElementById('btn_4');
+
+//chiamo le funzioni con gli eventi
+btn1.addEventListener("click", btnEven);
+btn2.addEventListener("click",btnOdd);
+
+
+
+//funzioni
+function btnEven() {
+    btn1.classList.replace("btn-outline-success","btn-success");
+    btn2.classList.replace("btn-danger", "btn-outline-danger");
+    btn3.classList.replace("btn-success", "btn-outline-success");
+    btn4.classList.replace("btn-outline-danger", "btn-danger");
+
+}
+
+function btnOdd() {
+    btn1.classList.replace("btn-success", "btn-outline-success");
+    btn2.classList.replace("btn-outline-danger", "btn-danger");
+    btn3.classList.replace("btn-outline-success","btn-success");
+    btn4.classList.replace("btn-danger", "btn-outline-danger");
+}
