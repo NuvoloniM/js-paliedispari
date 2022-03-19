@@ -1,8 +1,14 @@
 .bg_green,
 .btn_green {
   background-color: rgb(25, 228, 25);
+  color: #fff;
 }
 
 .d-block {
   display: block;
+}
+
+.bg_red {
+  background-color: red;
+  color: #000;
 }
