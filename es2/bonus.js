@@ -17,6 +17,7 @@ let btn3 = document.getElementById('btn_3');
 let btn4 = document.getElementById('btn_4');
 //target btn inizio gioco 
 let btnGo = document.getElementById('btn_go');
+let btnReload = document.getElementById('btn_reload');
 
 //1. Seleziono Pari o Dispari
 btn1.addEventListener("click", btnEven);
@@ -25,6 +26,9 @@ btn2.addEventListener("click",btnOdd);
 //2.Schiaccio play -> inizo il gioco 
 //funzione start game
 btnGo.addEventListener("click",check);
+//ricarica la pagina
+btnReload.addEventListener("click", reload);
+
 
 
 //funzioni
@@ -55,38 +59,51 @@ function check() {
         } else {
             userNumb = parseInt(val);
             document.getElementById('user_numb').innerHTML = `${userNumb}`;
-        }
 
-        //controllo user choice
-        if (btn1.classList.contains('btn-success') == true) {
-        userChoice = 'Pari';
-        } else {
-        userChoice = 'Dispari';
-        }
-        console.log(userChoice);
-        
-        //estraggo comp number
-        let compNumber= randomInt(5);
-        document.getElementById('comp_numb').innerHTML = `${compNumber}`;
+            //controllo user choice
+            if (btn1.classList.contains('btn-success') == true) {
+                userChoice = 'Pari';
+            } else {
+                userChoice = 'Dispari';
+            }
+            console.log(userChoice);
+            
+            //estraggo comp number
+            let compNumber= randomInt(5);
+            document.getElementById('comp_numb').innerHTML = `${compNumber}`;
+    
+            //sommo i due numeri 
+            let sum = userNumb + compNumber;
+            document.getElementById('sum').innerHTML = `${sum}`;
+            //Chi vince?
+            if (userChoice == isEven(sum)) {
+                document.getElementById('box_result').classList.add('bg_green'); 
+                document.getElementById('result').innerHTML = `${isEven(sum)} : HAI VINTO!!!`;
+            } else {
+                document.getElementById('box_result').classList.add('bg_red'); 
+                document.getElementById('result').innerHTML = `${isEven(sum)} : HAI PERSO!!!`;
+            }
+    
+            //mostra i risultati in html
+            document.getElementById('end_game').classList.toggle('d-none');
+            //nascondi le scelte
+            document.getElementById('user_choice').classList.toggle('d-none');
+            document.getElementById('comp_choice').classList.toggle('d-none');
+            }
+            //scambia i bottoni
+            btnGo.classList.toggle('d-none');
+            btnReload.classList.toggle('d-none');
 
-        //sommo i due numeri 
-        let sum = userNumb + compNumber;
-        document.getElementById('sum').innerHTML = `${sum}`;
-        //Chi vince?
-        if (userChoice == isEven(sum)) {
-            document.getElementById('box_result').classList.add('bg_green'); 
-            document.getElementById('result').innerHTML = `${isEven(sum)} : HAI VINTO!!!`;
-        } else {
-            document.getElementById('box_result').classList.add('bg_red'); 
-            document.getElementById('result').innerHTML = `${isEven(sum)} : HAI PERSO!!!`;
-        }
     } else {
-        alert('Inserisci tutti i dati');
+        alert('Scegli pari o dispari');
     }
-    
-    
+        
 }
 
+function reload() {
+    svuota('input');
+    history.go(0);
+}
 
 //funzione per scegliere un numero tra min e max
 
@@ -105,3 +122,8 @@ function isEven(x) {
         return 'Dispari';
     }
 }
+
+//eliminare numero scelto che rimane in input
+function svuota(x) {  
+    document.getElementById(x).value = "";
+  }
