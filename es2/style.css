@@ -1,3 +1,7 @@
+body {
+  background-color: antiquewhite;
+}
+
 .bg_green,
 .btn_green {
   background-color: rgb(25, 228, 25);
