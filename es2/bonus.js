@@ -69,7 +69,7 @@ function check() {
             console.log(userChoice);
             
             //estraggo comp number
-            let compNumber= randomInt(5);
+            let compNumber= randomInt(1,5);
             document.getElementById('comp_numb').innerHTML = `${compNumber}`;
     
             //sommo i due numeri 
@@ -108,8 +108,8 @@ function reload() {
 //funzione per scegliere un numero tra min e max
 
 let x = 0;
-function randomInt(max) {
-    x = Math.ceil(Math.random()*max);
+function randomInt(min,max) {
+    x = Math.floor(Math.random()*max + min);
     console.log(x);
     return x;
 }
@@ -125,5 +125,5 @@ function isEven(x) {
 
 //eliminare numero scelto che rimane in input
 function svuota(x) {  
-    document.getElementById(x).value = "";
-  }
+    return document.getElementById(x).value = "";
+}
